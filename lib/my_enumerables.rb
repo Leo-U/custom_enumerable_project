@@ -1,7 +1,7 @@
 module Enumerable
   def my_each_with_index
     index = 0
-    each do 
+    my_each do 
       yield(self[index], index)
       index += 1
     end
