@@ -1,23 +1,37 @@
 module Enumerable
+  
   def my_each_with_index
-    index = 0
+    i = 0
     my_each do 
-      yield(self[index], index)
-      index += 1
+      yield(self[i], i)
+      i += 1
     end
   end
-end
 
-# You will first have to define my_each
-# on the Array class. Methods defined in
-# your enumerable module will have access
-# to this method
+  def my_select
+    selected = []
+    i = 0
+    my_each do
+      selected << self[i] if yield(self[i])
+      i += 1
+    end
+    selected
+  end
+
+  def my_all?(&block)
+    my_select(&block) == self
+  end
+
+end
 
 class Array
   def my_each
-    return to_enum unless block_given?
     for i in self
       yield(i)
     end
   end
 end
+
+
+p [1,2,3].my_select{|el| el == 2}
+p [1,2,3].my_all?{|el| el == 2}
