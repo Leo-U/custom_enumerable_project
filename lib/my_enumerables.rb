@@ -40,6 +40,16 @@ module Enumerable
     i
   end
 
+  def my_map
+    mapped = []
+    i = 0
+    my_each do
+      mapped << yield(self[i])
+      i += 1
+    end
+    mapped
+  end 
+  
 end
 
 class Array
@@ -50,4 +60,5 @@ class Array
   end
 end
 
-puts [1,2,3].my_count { |el| el > 0 }
+
+p [1,2,3].my_map {|el| el + 1}
