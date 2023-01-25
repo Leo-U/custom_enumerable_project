@@ -29,6 +29,17 @@ module Enumerable
   def my_none?(&block)
     my_select(&block) == []
   end
+
+  def my_count(&block)
+    i = 0
+    if block_given?
+      my_select(&block).my_each { i += 1 }
+    else
+      my_each { i += 1 }
+    end
+    i
+  end
+
 end
 
 class Array
@@ -38,3 +49,5 @@ class Array
     end
   end
 end
+
+puts [1,2,3].my_count { |el| el > 0 }
