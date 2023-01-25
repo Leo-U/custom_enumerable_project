@@ -22,6 +22,13 @@ module Enumerable
     my_select(&block) == self
   end
 
+  def my_any?(&block)
+    my_select(&block) != []
+  end
+
+  def my_none?(&block)
+    my_select(&block) == []
+  end
 end
 
 class Array
@@ -31,7 +38,3 @@ class Array
     end
   end
 end
-
-
-p [1,2,3].my_select{|el| el == 2}
-p [1,2,3].my_all?{|el| el == 2}
