@@ -1,5 +1,4 @@
 module Enumerable
-  
   def my_each_with_index
     i = 0
     my_each do 
@@ -10,10 +9,8 @@ module Enumerable
 
   def my_select
     selected = []
-    i = 0
-    my_each do
-      selected << self[i] if yield(self[i])
-      i += 1
+    my_each do |el|
+      selected << el if yield(el)
     end
     selected
   end
@@ -42,10 +39,8 @@ module Enumerable
 
   def my_map
     mapped = []
-    i = 0
-    my_each do
-      mapped << yield(self[i])
-      i += 1
+    my_each do |el|
+      mapped << yield(el)
     end
     mapped
   end 
